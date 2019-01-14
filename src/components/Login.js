@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 
+// Redux
+import { connect } from 'react-redux'
+import {
+  loginUser
+} from '../actions'
+
 const apiUrl = 'http://localhost:3000'
 
 class Login extends Component {
+  /////////////////////// Lifecycle methods
+
   state = {
     username: '',
     password: ''
@@ -50,29 +58,62 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const username = e.target.querySelector('#username').value
-    const password = e.target.querySelector('#password').value
+    // this.props.loginUser(this.state.username, this.state.password)
+    this.loginUser(this.state.username, this.state.password)
+    this.setState({ username: '', password: '' })
 
+    // .then(r => r.json())
+    // .then(r => {
+    //   console.log('console:', r)
+    // })
+
+  }
+  ////////////////////
+
+  loginUser = () => {
     fetch(`${apiUrl}/api/v1/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         user: {
-          username: username,
-          password: password,
+          username: this.state.username,
+          password: this.state.password
         }
       })
     })
-    .then(r => r.json())
-    .then(r => {
-      console.log('console:', r)
+    .then(response => {
+      console.log(response)
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw response
+      }
     })
 
   }
 
 }
 
-export default Login;
+
+const mapStateToProps = (state, ownProps) => ({
+  authenticatingUser: state.authenticatingUser,
+  failedLogin: state.failedLogin,
+  error: state.error,
+  loggedIn: state.loggedIn
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loginUser: (username, password) => dispatch(loginUser(username, password)),
+})
+
+
+const connectedLogin = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)
+
+
+export default connectedLogin;
