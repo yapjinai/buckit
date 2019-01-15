@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  fetchCurrentUser,
+} from '../actions'
 
 class Profile extends Component {
   render() {

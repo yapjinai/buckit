@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 // Redux
 import { connect } from 'react-redux'
 import {
-  loginUser
+  // loginUser,
+  setCurrentUser
 } from '../actions'
 
 const apiUrl = 'http://localhost:3000'
@@ -85,14 +86,18 @@ class Login extends Component {
       })
     })
     .then(response => {
-      console.log(response)
+      console.log('response:', response)
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-
+    .then(jsonResponse => {
+      console.log('jsonResponse:', jsonResponse)
+      localStorage.setItem('jwt', jsonResponse.jwt)
+      this.props.setCurrentUser(jsonResponse.user)
+    })
   }
 
 }
@@ -106,7 +111,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loginUser: (username, password) => dispatch(loginUser(username, password)),
+  // loginUser: (username, password) => dispatch(loginUser(username, password)),
+  setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
 })
 
 

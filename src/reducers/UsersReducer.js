@@ -11,7 +11,7 @@ const usersReducer = (state=defaultState, action) => {
 
     case 'SET_CURRENT_USER':
       return {
-        // ...state,
+        ...state,
         user: action.payload, // user object
         loggedIn: true,
         // authenticatingUser: false

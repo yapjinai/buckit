@@ -1,11 +1,11 @@
 const apiUrl = 'http://localhost:3000'
 
-export const loginUser = (username, password) => {
-  console.log('hi')
-  return ({
-    type: 'SET_CURRENT_USER',
-    payload: username
-  })}
+// export const loginUser = (username, password) => {
+//   console.log('hi')
+//   return ({
+//     type: 'SET_CURRENT_USER',
+//     payload: username
+//   })}
 
 // export const loginUser = (username, password) => {
 //   return (dispatch) => {

@@ -18,7 +18,9 @@ class Home extends Component {
   fetchUsers = () => {
     fetch(`${apiUrl}/api/v1/users`)
     .then(r => r.json())
-    .then(console.log)
+    .then(r => {
+      console.log("r:", r)
+    })
   }
 }
 
