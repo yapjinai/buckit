@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 class Profile extends Component {
   render() {
-    console.log('this.props:', this.props);
     return (
       <div className="Profile">
         Welcome, {this.props.user.display_name}!

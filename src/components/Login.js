@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 
 // Redux
 import { connect } from 'react-redux'
 import {
   // loginUser,
-  // setCurrentUser
+  setCurrentUser
 } from '../actions'
 
 const apiUrl = 'http://localhost:3000'
@@ -19,6 +19,12 @@ class Login extends Component {
   }
 
   render() {
+    console.log(this.props);
+    return this.props.loggedIn ? <Redirect to="/profile" /> :
+    this.renderLogin();
+  }
+
+  renderLogin() {
     return (
       <div className="Login">
         Login
@@ -95,23 +101,24 @@ class Login extends Component {
     })
     .then(jsonResponse => {
       localStorage.setItem('jwt', jsonResponse.jwt)
-      // this.props.setCurrentUser(jsonResponse.user)
+      this.props.setCurrentUser(jsonResponse.user)
     })
   }
 
 }
 
 
-const mapStateToProps = (state, ownProps) => ({
-  authenticatingUser: state.authenticatingUser,
-  failedLogin: state.failedLogin,
-  error: state.error,
-  loggedIn: state.loggedIn
-})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return ({
+  // authenticatingUser: state.authenticatingUser,
+  // failedLogin: state.failedLogin,
+  // error: state.error,
+  loggedIn: state.UsersReducer.loggedIn
+})}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // loginUser: (username, password) => dispatch(loginUser(username, password)),
-  // setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
+  setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
 })
 
 
