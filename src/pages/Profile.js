@@ -24,7 +24,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return ({
-    user: state.UsersReducer.user
+    user: state.usersReducer.user
   })
 }
 

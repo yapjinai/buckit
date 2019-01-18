@@ -59,8 +59,8 @@ const authorizeFn = (WrappedComponent) => {
 
   const mapStateToProps = (state) => {
     return {
-      loggedIn: state.UsersReducer.loggedIn,
-      authenticatingUser: state.UsersReducer.authenticatingUser
+      loggedIn: state.usersReducer.loggedIn,
+      authenticatingUser: state.usersReducer.authenticatingUser
     }
   }
 

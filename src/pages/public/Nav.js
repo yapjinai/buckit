@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import {
   logOut
-} from '../actions'
+} from '../../actions'
 
 // Redux
 import { connect } from 'react-redux'
@@ -45,8 +45,8 @@ class Nav extends Component {
 
 const mapStateToProps = (state) => {
   return ({
-    loggedIn: state.UsersReducer.loggedIn,
-    user: state.UsersReducer.user
+    loggedIn: state.usersReducer.loggedIn,
+    user: state.usersReducer.user
   })
 }
 

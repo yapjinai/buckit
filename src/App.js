@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import Nav from './components/Nav';
+import Nav from './pages/public/Nav';
+import Home from './pages/public/Home';
+import Login from './pages/public/Login';
 
-import Home from './components/Home';
-import Login from './components/Login';
-import Profile from './components/Profile';
-import Items from './components/Items';
+import Profile from './pages/Profile';
+import Items from './pages/Items';
 
 // import './App.css';
 

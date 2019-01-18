@@ -6,13 +6,11 @@ import { connect } from 'react-redux'
 import {
   // loginUser,
   setCurrentUser
-} from '../actions'
+} from '../../actions'
 
 const apiUrl = 'http://localhost:3000'
 
 class Login extends Component {
-  /////////////////////// Lifecycle methods
-
   state = {
     username: '',
     password: ''
@@ -114,7 +112,7 @@ const mapStateToProps = (state) => {
   // authenticatingUser: state.authenticatingUser,
   // failedLogin: state.failedLogin,
   // error: state.error,
-  loggedIn: state.UsersReducer.loggedIn
+  loggedIn: state.usersReducer.loggedIn
 })}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
