@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import authorizeFn from './Authorize'
 
 class Items extends Component {
   render() {
@@ -10,4 +11,4 @@ class Items extends Component {
   }
 }
 
-export default Items;
+export default authorizeFn(Items);

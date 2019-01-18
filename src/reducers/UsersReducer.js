@@ -10,7 +10,6 @@ const usersReducer = (state=defaultState, action) => {
   switch (action.type) {
 
     case 'SET_CURRENT_USER':
-      console.log('setting current user')
       return {
         ...state,
         user: action.payload, // user object
@@ -18,19 +17,31 @@ const usersReducer = (state=defaultState, action) => {
         // authenticatingUser: false
       }
 
+    case 'LOG_OUT':
+      return {
+        ...state,
+        user: null, // user object
+        loggedIn: false,
+        // authenticatingUser: false
+      }
+
+    //////////////////////////
+
     case 'AUTHENTICATING_USER': //tells the app we're fetching
       return { ...state, authenticatingUser: true }
 
     case 'AUTHENTICATED_USER':
       return { ...state, authenticatingUser: false }
 
-    case 'FAILED_LOGIN': //for error handling
-      return {
-        ...state,
-        failedLogin: true,
-        error: action.payload, // error message
-        authenticatingUser: false
-      }
+    //////////////////////////
+
+    // case 'FAILED_LOGIN': //for error handling
+    //   return {
+    //     ...state,
+    //     failedLogin: true,
+    //     error: action.payload, // error message
+    //     authenticatingUser: false
+    //   }
 
     default:
       return state

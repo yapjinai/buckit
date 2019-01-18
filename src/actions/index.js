@@ -5,10 +5,11 @@ export const setCurrentUser = (userObj) => ({
   payload: userObj
 })
 
-export const failedLogin = (errorMsg) => ({
-  type: 'FAILED_LOGIN',
-  payload: errorMsg
+export const logOut = () => ({
+  type: 'LOG_OUT'
 })
+
+//////////////////////////
 
 export const authenticatingUser = () => ({
   type: 'AUTHENTICATING_USER'
@@ -18,7 +19,12 @@ export const authenticatedUser = () => ({
   type: 'AUTHENTICATED_USER'
 })
 
+//////////////////////////
 
+export const failedLogin = (errorMsg) => ({
+  type: 'FAILED_LOGIN',
+  payload: errorMsg
+})
 
 
 
