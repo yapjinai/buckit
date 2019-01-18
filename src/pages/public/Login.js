@@ -17,7 +17,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log(this.props);
     return this.props.loggedIn ? <Redirect to="/profile" /> :
     this.renderLogin();
   }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Nav from './pages/public/Nav';
+import Nav from './pages/components/Nav';
 import Home from './pages/public/Home';
 import Login from './pages/public/Login';
+import NotFound from './pages/public/NotFound'
 
 import Profile from './pages/Profile';
 import Items from './pages/Items';
@@ -17,10 +18,13 @@ class App extends Component {
         <BrowserRouter>
           <>
             <Nav />
-            <Route exact path='/' component={Home}/>
-            <Route path='/login' component={Login}/>
-            <Route path='/profile' component={Profile}/>
-            <Route path='/items' component={Items}/>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/login' component={Login}/>
+              <Route path='/profile' component={Profile}/>
+              <Route path='/items' component={Items}/>
+              <Route component={NotFound} />
+            </Switch>
           </>
         </BrowserRouter>
       </div>

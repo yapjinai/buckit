@@ -14,13 +14,12 @@ class Nav extends Component {
       <nav className="Nav">
       {this.props.loggedIn ? `Logged in as ${this.props.user.display_name}` : 'please log in'}
         <ul>
-        <li><Link to='/login'>Login</Link></li>
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/profile'>My Profile</Link></li>
           <li><Link to='/items'>Items</Link></li>
           <li>
             <Link
-              to='/'
+              to='/login'
               onClick={this.logOutUser}
             >
               Log out
