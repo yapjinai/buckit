@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+// import { Redirect } from 'react-router'
 
 // Redux
 import { connect } from 'react-redux'
 import {
   // loginUser,
-  setCurrentUser
+  // setCurrentUser
 } from '../actions'
 
 const apiUrl = 'http://localhost:3000'
@@ -86,7 +87,6 @@ class Login extends Component {
       })
     })
     .then(response => {
-      console.log('response:', response)
       if (response.ok) {
         return response.json()
       } else {
@@ -94,9 +94,8 @@ class Login extends Component {
       }
     })
     .then(jsonResponse => {
-      console.log('jsonResponse:', jsonResponse)
       localStorage.setItem('jwt', jsonResponse.jwt)
-      this.props.setCurrentUser(jsonResponse.user)
+      // this.props.setCurrentUser(jsonResponse.user)
     })
   }
 
@@ -112,7 +111,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   // loginUser: (username, password) => dispatch(loginUser(username, password)),
-  setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
+  // setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
 })
 
 

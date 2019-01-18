@@ -1,5 +1,32 @@
 const apiUrl = 'http://localhost:3000'
 
+export const setCurrentUser = (userObj) => ({
+  type: 'SET_CURRENT_USER',
+  payload: userObj
+})
+
+export const failedLogin = (errorMsg) => ({
+  type: 'FAILED_LOGIN',
+  payload: errorMsg
+})
+
+export const authenticatingUser = () => ({
+  type: 'AUTHENTICATING_USER'
+})
+
+export const authenticatedUser = () => ({
+  type: 'AUTHENTICATED_USER'
+})
+
+
+
+
+
+
+
+
+
+
 // export const loginUser = (username, password) => {
 //   console.log('hi')
 //   return ({
@@ -44,33 +71,3 @@ const apiUrl = 'http://localhost:3000'
 //
 //   }
 // }
-
-export const fetchCurrentUser = () => {
-  // takes the token in localStorage and finds out who it belongs to
-  return (dispatch) => {
-    dispatch(authenticatingUser()) //tells the app we are fetching
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/profile`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
-      .then(response => response.json())
-      .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.user)))
-  }
-}
-
-export const setCurrentUser = (userObj) => ({
-  type: 'SET_CURRENT_USER',
-  payload: userObj
-})
-
-export const failedLogin = (errorMsg) => ({
-  type: 'FAILED_LOGIN',
-  payload: errorMsg
-})
-
-// tell our app we're currently fetching
-export const authenticatingUser = () => ({
-  type: 'AUTHENTICATING_USER'
-})

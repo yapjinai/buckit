@@ -1,16 +1,36 @@
 import React, { Component } from 'react';
-import {
-  fetchCurrentUser,
-} from '../actions'
+import authorizeFn from './Authorize'
+
+// Redux
+import { connect } from 'react-redux'
 
 class Profile extends Component {
   render() {
+    console.log('this.props:', this.props);
     return (
       <div className="Profile">
-        Profile
+        Welcome, {this.props.user.display_name}!
+        <br />
+        username: {this.props.user.username}
+        <br />
+        email: {this.props.user.email}
       </div>
     );
   }
 }
 
-export default Profile;
+///////////////
+// redux
+///////////////
+
+const mapStateToProps = (state) => {
+  return ({
+    user: state.UsersReducer.user
+  })
+}
+
+const connectedProfile = connect(
+  mapStateToProps
+)(Profile)
+
+export default authorizeFn(connectedProfile);
