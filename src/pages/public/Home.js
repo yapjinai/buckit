@@ -11,20 +11,26 @@ import {
 
 class Home extends Component {
   render() {
-    return this.props.loggedIn ? this.loggedInHome : this.loggedOutHome
+    return this.props.loggedIn ?
+      this.loggedInHome() :
+      this.loggedOutHome()
   }
 
   ///////////////////////
 
-  loggedInHome = (
-    <div className="Home">You are logged in.</div>
-  )
+  loggedInHome = () => {
+    return (
+      <div className="Home">You are logged in.</div>
+    )
+  }
 
-  loggedOutHome = (
-    <div className="Home">
+  loggedOutHome = () => {
+    return (
+      <div className="Home">
       You are logged out.
-    </div>
-  )
+      </div>
+    )
+  }
 
 }
 
@@ -34,7 +40,6 @@ class Home extends Component {
 ///////////////////
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return ({
   loggedIn: state.usersReducer.loggedIn
 })}

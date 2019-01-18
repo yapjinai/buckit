@@ -16,7 +16,9 @@ class Nav extends Component {
         <ul>
           <li><Link to='/'>Home</Link></li>
 
-          {this.props.loggedIn ? this.loggedInNav : this.loggedOutNav}
+          {this.props.loggedIn ?
+            this.loggedInNav() :
+            this.loggedOutNav()}
         </ul>
       </nav>
     );
@@ -24,27 +26,32 @@ class Nav extends Component {
 
   ////////////////////
 
-  loggedInNav = (
-    <>
+  loggedInNav = () => {
+    return (
+      <>
       <li><Link to='/profile'>My Profile</Link></li>
       <li><Link to='/items'>Items</Link></li>
       <li>
-        <Link
-          to='/login'
-          onClick={this.logOutUser}
-        >
-          Log out
-        </Link>
+      <Link
+      to='/login'
+      onClick={this.logOutUser}
+      >
+      Log out
+      </Link>
       </li>
-    </>
-  )
+      </>
 
-  loggedOutNav = (
-    <li>
+    )
+  }
+
+  loggedOutNav = () => {
+    return (
+      <li>
       You are logged out.
       <Login />
-    </li>
-  )
+      </li>
+    )
+  }
 
   ////////////////////
 

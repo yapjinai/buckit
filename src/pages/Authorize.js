@@ -13,11 +13,11 @@ const apiUrl = 'http://localhost:3000'
 
 const authorizeFn = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
-    componentDidMount() {
-      if (localStorage.getItem('jwt') && !this.props.loggedIn) {
-        this.fetchCurrentUser()
-      }
-    }
+    // componentDidMount() {
+    //   if (localStorage.getItem('jwt') && !this.props.loggedIn) {
+    //     this.fetchCurrentUser()
+    //   }
+    // }
 
     render() {
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
@@ -38,23 +38,26 @@ const authorizeFn = (WrappedComponent) => {
     }
 
     ////////////////////////
+  //
+  //   fetchCurrentUser = () => {
+  //     this.props.authenticatingUser()
+  //     fetch(`${apiUrl}/api/v1/profile`, {
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  //       }
+  //     })
+  //     .then(response => response.json())
+  //     .then((JSONResponse) => {
+  //       this.props.setCurrentUser(JSONResponse.user)
+  //     })
+  //     .then(this.props.authenticatedUser)
+  //   }
 
-    fetchCurrentUser = () => {
-      this.props.authenticatingUser()
-      fetch(`${apiUrl}/api/v1/profile`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      })
-      .then(response => response.json())
-      .then((JSONResponse) => {
-        this.props.setCurrentUser(JSONResponse.user)
-      })
-      .then(this.props.authenticatedUser)
-    }
   }
 
+//////////////
+// Redux
 //////////////
 
   const mapStateToProps = (state) => {
@@ -64,16 +67,8 @@ const authorizeFn = (WrappedComponent) => {
     }
   }
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      authenticatingUser: () => dispatch(authenticatingUser()),
-      authenticatedUser: () => dispatch(authenticatedUser()),
-      setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
-    }
-  }
   return connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
   )(AuthorizedComponent)
 }
 
