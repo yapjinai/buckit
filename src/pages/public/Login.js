@@ -104,6 +104,9 @@ class Login extends Component {
 
 }
 
+///////////////////
+// redux
+///////////////////
 
 const mapStateToProps = (state) => {
   console.log(state)

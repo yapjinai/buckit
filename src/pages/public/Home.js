@@ -1,27 +1,52 @@
 import React, { Component } from 'react';
 
+// Redux
+import { connect } from 'react-redux'
+import {
+  // loginUser,
+  // setCurrentUser
+} from '../../actions'
+
 // const apiUrl = 'http://localhost:3000'
 
 class Home extends Component {
   render() {
-    // this.fetchUsers()
-
-    return (
-      <div className="Home">
-        Home
-      </div>
-    );
+    return this.props.loggedIn ? this.loggedInHome : this.loggedOutHome
   }
 
   ///////////////////////
-  //
-  // fetchUsers = () => {
-  //   fetch(`${apiUrl}/api/v1/users`)
-  //   .then(r => r.json())
-  //   .then(r => {
-  //     console.log("r:", r)
-  //   })
-  // }
+
+  loggedInHome = (
+    <div className="Home">You are logged in.</div>
+  )
+
+  loggedOutHome = (
+    <div className="Home">
+      You are logged out.
+    </div>
+  )
+
 }
 
-export default Home;
+
+///////////////////
+// redux
+///////////////////
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return ({
+  loggedIn: state.usersReducer.loggedIn
+})}
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+})
+
+
+const connectedHome = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
+
+
+export default connectedHome;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import Login from '../public/Login';
 
 import {
   logOut
@@ -12,23 +13,38 @@ class Nav extends Component {
   render() {
     return (
       <nav className="Nav">
-      {this.props.loggedIn ? `Logged in as ${this.props.user.display_name}` : 'please log in'}
         <ul>
           <li><Link to='/'>Home</Link></li>
-          <li><Link to='/profile'>My Profile</Link></li>
-          <li><Link to='/items'>Items</Link></li>
-          <li>
-            <Link
-              to='/login'
-              onClick={this.logOutUser}
-            >
-              Log out
-            </Link>
-          </li>
+
+          {this.props.loggedIn ? this.loggedInNav : this.loggedOutNav}
         </ul>
       </nav>
     );
   }
+
+  ////////////////////
+
+  loggedInNav = (
+    <>
+      <li><Link to='/profile'>My Profile</Link></li>
+      <li><Link to='/items'>Items</Link></li>
+      <li>
+        <Link
+          to='/login'
+          onClick={this.logOutUser}
+        >
+          Log out
+        </Link>
+      </li>
+    </>
+  )
+
+  loggedOutNav = (
+    <li>
+      You are logged out.
+      <Login />
+    </li>
+  )
 
   ////////////////////
 
