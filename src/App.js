@@ -4,7 +4,7 @@ import './css/App.css';
 
 import Nav from './pages/components/Nav';
 import Home from './pages/public/Home';
-import Login from './pages/public/Login';
+// import Login from './pages/public/Login';
 import CreateAccount from './pages/public/CreateAccount';
 import NotFound from './pages/public/NotFound'
 
@@ -38,7 +38,6 @@ class App extends Component {
               <Nav />
               <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route exact path='/login' component={Login}/>
                 <Route exact path='/createAccount' component={CreateAccount}/>
                 <Route exact path='/profile' component={Profile}/>
                 <Route path='/items' render={routerProps => <Items {...routerProps} />} />

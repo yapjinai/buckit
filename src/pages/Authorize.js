@@ -32,7 +32,7 @@ const authorizeFn = (WrappedComponent) => {
       }
       else {
         return (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         )
       }
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
+import TodoToggle from './TodoToggle'
+
 // Redux
 import { connect } from 'react-redux'
 import {
@@ -9,6 +11,8 @@ import {
 
 class Item extends Component {
   render() {
+    console.log(this.props.item)
+    console.log(this.props.user)
     return (
       <div className="Item">
         {this.props.item ? this.itemLoaded() : null}
@@ -23,12 +27,15 @@ class Item extends Component {
       <>
         <h2>{this.props.item.description}</h2>
 
-        <h3>People with this goal:</h3>
-        <ul>
-          {this.props.item.users.map(u => <li>{u.display_name}</li>)}
-        </ul>
+        <TodoToggle
+          onList={!!this.props.user.items.find(i => i.id === this.props.item.id)}
+        />
 
-        <Link to='/items'>Back</Link>
+        <br />
+
+        <div>
+          <Link to='/items'>Back</Link>
+        </div>
       </>
     )
   }

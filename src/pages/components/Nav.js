@@ -33,10 +33,10 @@ class Nav extends Component {
       <li><Link to='/items'>Items</Link></li>
       <li>
       <Link
-      to='/login'
-      onClick={this.logOutUser}
+        to='/'
+        onClick={this.logOutUser}
       >
-      Log out
+        Log out
       </Link>
       </li>
       </>
