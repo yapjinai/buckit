@@ -38,7 +38,7 @@ class Login extends Component {
           />
           <input
             id='password'
-            type='text'
+            type='password'
             placeholder='password'
             value={this.state.password}
             onChange={this.handleChange}

@@ -4,7 +4,6 @@ import { Redirect } from 'react-router'
 // Redux
 import { connect } from 'react-redux'
 import {
-  // loginUser,
   setCurrentUser
 } from '../../actions'
 
@@ -13,6 +12,7 @@ const apiUrl = 'http://localhost:3000'
 class Login extends Component {
   state = {
     username: '',
+    display_name: '',
     password: '',
     email: ''
   }
@@ -20,6 +20,18 @@ class Login extends Component {
   render() {
     return this.props.loggedIn ? <Redirect to="/profile" /> :
     this.renderLogin();
+  }
+
+  inputfield = (field) => {
+    return (
+      <input
+        id={field}
+        type='text'
+        placeholder={field}
+        value={this.state[field]}
+        onChange={this.handleChange}
+      />
+    )
   }
 
   renderLogin() {
@@ -30,27 +42,16 @@ class Login extends Component {
           id='loginForm'
           onSubmit={this.handleSubmit}
         >
-          <input
-            id='username'
-            type='text'
-            placeholder='username'
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
+          {this.inputfield('username')}
+          {this.inputfield('display_name')}
           <input
             id='password'
-            type='text'
+            type='password'
             placeholder='password'
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <input
-            id='email'
-            type='text'
-            placeholder='email'
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
+          {this.inputfield('email')}
           <input
             id='submit'
             type='submit'
@@ -71,12 +72,12 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.loginUser(this.state.username, this.state.password, this.state.email)
-    this.setState({ username: '', password: '', email: '' })
+    this.createAccount()
+    this.setState({ username: '', password: '', display_name: '', email: '' })
   }
   ////////////////////
 
-  loginUser = () => {
+  createAccount = () => {
     fetch(`${apiUrl}/api/v1/users`, {
       method: 'POST',
       headers: {
@@ -86,6 +87,7 @@ class Login extends Component {
       body: JSON.stringify({
         user: {
           username: this.state.username,
+          display_name: this.state.display_name,
           password: this.state.password,
           email: this.state.email
         }

@@ -9,7 +9,7 @@ import CreateAccount from './pages/public/CreateAccount';
 import NotFound from './pages/public/NotFound'
 
 import Profile from './pages/Profile';
-import Items from './pages/Items';
+import Items from './pages/items/index';
 
 // Redux
 import { connect } from 'react-redux'
