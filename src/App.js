@@ -38,10 +38,10 @@ class App extends Component {
               <Nav />
               <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/login' component={Login}/>
-                <Route path='/createAccount' component={CreateAccount}/>
-                <Route path='/profile' component={Profile}/>
-                <Route path='/items' component={Items}/>
+                <Route exact path='/login' component={Login}/>
+                <Route exact path='/createAccount' component={CreateAccount}/>
+                <Route exact path='/profile' component={Profile}/>
+                <Route exact path='/items' component={Items}/>
                 <Route component={NotFound} />
               </Switch>
             </>

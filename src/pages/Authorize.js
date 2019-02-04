@@ -4,12 +4,12 @@ import { Redirect } from 'react-router'
 // Redux
 import { connect } from 'react-redux'
 import {
-  authenticatingUser,
-  authenticatedUser,
-  setCurrentUser,
+  // authenticatingUser,
+  // authenticatedUser,
+  // setCurrentUser,
 } from '../actions'
 
-const apiUrl = 'http://localhost:3000'
+// const apiUrl = 'http://localhost:3000'
 
 const authorizeFn = (WrappedComponent) => {
   class AuthorizedComponent extends Component {

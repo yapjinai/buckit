@@ -120,7 +120,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   setCurrentUser: (userObj) => dispatch(setCurrentUser(userObj)),
 })
 
-
 const connectedLogin = connect(
   mapStateToProps,
   mapDispatchToProps
