@@ -41,7 +41,8 @@ class App extends Component {
                 <Route exact path='/login' component={Login}/>
                 <Route exact path='/createAccount' component={CreateAccount}/>
                 <Route exact path='/profile' component={Profile}/>
-                <Route exact path='/items' component={Items}/>
+                <Route path='/items' render={routerProps => <Items {...routerProps} />} />
+
                 <Route component={NotFound} />
               </Switch>
             </>

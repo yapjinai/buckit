@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import authorizeFn from '../Authorize'
+
+import Item from './show'
 
 // Redux
 import { connect } from 'react-redux'
@@ -14,11 +17,10 @@ class Items extends Component {
   render() {
     return (
       <div className="Items">
-        All items
 
-        <ul className="ItemsList">
-          {this.displayItems()}
-        </ul>
+        <Route exact path={this.props.match.url} render={this.ItemIndex}/>
+        <Route path={`${this.props.match.url}/:id`} render={this.ItemShow}/>
+
       </div>
     );
   }
@@ -41,11 +43,34 @@ class Items extends Component {
     .then(this.props.setAllItems)
   }
 
+  ItemIndex = () => {
+    return (
+      <div className="Items">
+        All items
+
+        <ul className="ItemsList">
+          {this.displayItems()}
+        </ul>
+      </div>
+    )
+  }
+
+  ItemShow = (props) => {
+    let item = null;
+    if (this.props.items.length) {
+      item = this.props.items.find(i => {
+        return i.id === parseInt(props.match.params.id)
+      })
+      // console.log(item);
+    }
+    return <Item item={item} />
+  }
+
   displayItems = () => {
     return (
       this.props.items.map(i => {
         return (
-          <li>
+          <li key={i.id}>
             <Link to={`items/${i.id}`}>
               {i.description}
             </Link>
@@ -75,4 +100,4 @@ const connectedItems = connect(
   mapDispatchToProps,
 )(Items)
 
-export default authorizeFn(connectedItems);
+export default authorizeFn(withRouter(connectedItems));
