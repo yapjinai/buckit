@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 // Redux
 import { connect } from 'react-redux'
@@ -27,7 +28,7 @@ class Home extends Component {
   loggedOutHome = () => {
     return (
       <div className="Home">
-      You are logged out.
+      You are logged out. <Link to='/createAccount'>Create an account?</Link>
       </div>
     )
   }
