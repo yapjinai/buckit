@@ -46,7 +46,7 @@ class Items extends Component {
   ItemIndex = () => {
     return (
       <div className="Items">
-        All items
+        <h2>All items</h2>
 
         <ul className="ItemsList">
           {this.displayItems()}
