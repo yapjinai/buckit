@@ -3,22 +3,13 @@ import { Redirect } from 'react-router'
 
 // Redux
 import { connect } from 'react-redux'
-import {
-  // authenticatingUser,
-  // authenticatedUser,
-  // setCurrentUser,
-} from '../actions'
+// import {
+// } from '../actions'
 
 // const apiUrl = 'http://localhost:3000'
 
 const authorizeFn = (WrappedComponent) => {
   class AuthorizedComponent extends Component {
-    // componentDidMount() {
-    //   if (localStorage.getItem('jwt') && !this.props.loggedIn) {
-    //     this.fetchCurrentUser()
-    //   }
-    // }
-
     render() {
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
         return (
@@ -36,24 +27,6 @@ const authorizeFn = (WrappedComponent) => {
         )
       }
     }
-
-    ////////////////////////
-  //
-  //   fetchCurrentUser = () => {
-  //     this.props.authenticatingUser()
-  //     fetch(`${apiUrl}/api/v1/profile`, {
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('jwt')}`
-  //       }
-  //     })
-  //     .then(response => response.json())
-  //     .then((JSONResponse) => {
-  //       this.props.setCurrentUser(JSONResponse.user)
-  //     })
-  //     .then(this.props.authenticatedUser)
-  //   }
-
   }
 
 //////////////

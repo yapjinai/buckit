@@ -6,12 +6,14 @@ import TodoToggle from './TodoToggle'
 // Redux
 import { connect } from 'react-redux'
 import {
-
+  addTodo,
+  removeTodo
 } from '../../actions'
+
+const apiUrl = 'http://localhost:3000'
 
 class Item extends Component {
   render() {
-    console.log(this.props.item)
     console.log(this.props.user)
     return (
       <div className="Item">
@@ -28,7 +30,9 @@ class Item extends Component {
         <h2>{this.props.item.description}</h2>
 
         <TodoToggle
+          item={this.props.item}
           onList={!!this.props.user.items.find(i => i.id === this.props.item.id)}
+          toggleTodo={this.toggleTodo}
         />
 
         <br />
@@ -38,6 +42,50 @@ class Item extends Component {
         </div>
       </>
     )
+  }
+
+  ///////////////
+
+  // todoToggle functions:
+
+  toggleTodo = (item) => {
+    let newItems = [...this.props.user.items]
+
+    if (this.props.user.items.find(i => i.id === item.id)) {
+      this.props.removeTodo(item)
+
+      // fetch(`${apiUrl}/api/v1/todos/`, {
+      //   method: 'DELETE',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Accept': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     todo: {
+      //       user_id: this.props.user.id,
+      //       item_id: item.id
+      //     }
+      //   })
+      // })
+    }
+    else {
+      this.props.addTodo(item)
+
+      // fetch(`${apiUrl}/api/v1/todos`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Accept': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     todo: {
+      //       user_id: this.props.user.id,
+      //       item_id: item.id
+      //     }
+      //   })
+      // })
+    }
+
   }
 }
 
@@ -51,8 +99,9 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-//
+const mapDispatchToProps = (dispatch) => ({
+  addTodo: (itemObj) => dispatch(addTodo(itemObj)),
+  removeTodo: (itemObj) => dispatch(removeTodo(itemObj)),
 })
 
 const connectedItem = connect(

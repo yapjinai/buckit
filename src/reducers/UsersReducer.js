@@ -25,8 +25,6 @@ const usersReducer = (state=defaultState, action) => {
         // authenticatingUser: false
       }
 
-    //////////////////////////
-
     case 'AUTHENTICATING_USER': //tells the app we're fetching
       return { ...state, authenticatingUser: true }
 
@@ -35,13 +33,28 @@ const usersReducer = (state=defaultState, action) => {
 
     //////////////////////////
 
-    // case 'FAILED_LOGIN': //for error handling
-    //   return {
-    //     ...state,
-    //     failedLogin: true,
-    //     error: action.payload, // error message
-    //     authenticatingUser: false
-    //   }
+    case 'ADD_TODO':
+      let newItemAdded = [...state.user.items]
+      newItemAdded.push(action.payload)
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          items: newItemAdded
+        }
+      }
+
+    case 'REMOVE_TODO':
+      let newItemRemoved = [...state.user.items]
+      newItemRemoved = newItemRemoved.filter(i => i.id !== action.payload.id)
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          items: newItemRemoved
+        }
+      }
+
 
     default:
       return state
