@@ -10,39 +10,19 @@ class Profile extends Component {
     return (
       <div className="Profile">
         <div>
-          <h2>Welcome, {this.props.user.display_name}!</h2>
+          <h2>Your profile</h2>
           <br />
-          username: {this.props.user.username}
+          Username: {this.props.user.username}
           <br />
-          email: {this.props.user.email}
-        </div>
-        <div>
-          {this.props.user.items.length ? this.renderTodos() : <h2>'You have nothing to do!'</h2>}
+          Display name: {this.props.user.display_name}
+          <br />
+          Email: {this.props.user.email}
         </div>
       </div>
     );
   }
 
   /////////////
-
-  renderTodos = () => {
-    return(
-      <>
-        <h2>Your to-dos:</h2>
-        <ul>
-          {this.props.user.items.map(this.renderTodo)}
-        </ul>
-      </>
-    )
-  }
-
-  renderTodo = (item) => {
-    return(
-      <li key={item.id}>
-        <Link to={`items/${item.id}`}>{item.description}</Link>
-      </li>
-    )
-  }
 }
 
 ///////////////
