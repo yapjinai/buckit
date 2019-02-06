@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import authorizeFn from './Authorize'
 
 // Redux
@@ -29,9 +30,17 @@ class Profile extends Component {
       <>
         <h2>Your to-dos:</h2>
         <ul>
-          {this.props.user.items.map(i => <li key={i.id}>{i.description}</li>)}
+          {this.props.user.items.map(this.renderTodo)}
         </ul>
       </>
+    )
+  }
+
+  renderTodo = (item) => {
+    return(
+      <li key={item.id}>
+        <Link to={`items/${item.id}`}>{item.description}</Link>
+      </li>
     )
   }
 }

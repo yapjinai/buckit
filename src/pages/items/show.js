@@ -54,36 +54,34 @@ class Item extends Component {
     if (this.props.user.items.find(i => i.id === item.id)) {
       this.props.removeTodo(item)
 
-      // fetch(`${apiUrl}/api/v1/todos/`, {
-      //   method: 'DELETE',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Accept': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     todo: {
-      //       user_id: this.props.user.id,
-      //       item_id: item.id
-      //     }
-      //   })
-      // })
+      const todo = this.props.user.todos.find(t => t.item_id === item.id)
+      const todoId = todo.id
+      console.log(todoId);
+
+      fetch(`${apiUrl}/api/v1/todos/${todoId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        },
+      })
     }
     else {
       this.props.addTodo(item)
 
-      // fetch(`${apiUrl}/api/v1/todos`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Accept': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     todo: {
-      //       user_id: this.props.user.id,
-      //       item_id: item.id
-      //     }
-      //   })
-      // })
+      fetch(`${apiUrl}/api/v1/todos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        },
+        body: JSON.stringify({
+          todo: {
+            user_id: this.props.user.id,
+            item_id: item.id
+          }
+        })
+      })
     }
 
   }
